@@ -1,0 +1,1 @@
+pyinstaller -n AnimeDownloader script.py
