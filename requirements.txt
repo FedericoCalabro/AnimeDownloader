@@ -1,0 +1,3 @@
+wget
+cloudscraper
+requests_html
