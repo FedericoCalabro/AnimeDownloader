@@ -32,3 +32,4 @@ class Downloader(Thread):
                 wget.download(self.anime.url, f"{self.anime.name}/{self.anime.episode}", self.bar_progress)
             except:
                 continue
+        self.display.output[self.index] = None

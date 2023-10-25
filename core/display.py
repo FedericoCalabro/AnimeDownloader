@@ -8,7 +8,7 @@ class Display(Thread):
         Thread.__init__(self)
         self.daemon = True
         # List of output, each l[i] is assigned to a Downloader
-        self.output = ['' for i in range(0, mpd)]
+        self.output = [None for i in range(0, mpd)]
         # Global lock to manage priting
         self.lock = RLock()
         # Control variable to stop the running thread
@@ -19,6 +19,6 @@ class Display(Thread):
         while not self.stopped:
             os.system('cls' if  os.name == 'nt' else 'clear')
             with self.lock:
-                print('\n'.join(self.output), flush=True)
+                print('\n'.join(filter(lambda x : x is not None, self.output)), flush=True)
                 sleep(1)
 
