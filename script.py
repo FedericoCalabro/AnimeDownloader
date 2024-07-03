@@ -6,12 +6,20 @@ from queue import Queue
 import os
 
 ANIME_PAGE = str(input("1. Inserire l'URL di download dell'anime: "))
-LOWER_LIMIT = int(input("2. Scaricare gli episodi a partire dal numero:  "))
-UPPER_LIMIT = int(input("3. Fino all'episodio numero: "))
-MAX_PARALLEL_DOWNLOADS = int(input("4. Numero di downloads paralleli: "))
 
 scraper = AnimeScraper()
 DOWNLOAD_URL = scraper.scrape_download_url(ANIME_PAGE)
+
+print(f"Download url recuperato: {DOWNLOAD_URL}")
+
+confirm = input("y/n: ")
+
+if confirm != 'y':
+    quit()
+
+LOWER_LIMIT = int(input("2. Scaricare gli episodi a partire dal numero:  "))
+UPPER_LIMIT = int(input("3. Fino all'episodio numero: "))
+MAX_PARALLEL_DOWNLOADS = int(input("4. Numero di downloads paralleli: "))
 
 download_queue = Queue()
 for i in range(LOWER_LIMIT, UPPER_LIMIT+1):

@@ -17,14 +17,13 @@ class AnimeScraper:
     def scrape_download_url(self, url):
         try:
             download_url = self.__scrape_download_url(url)
-            print(f"Download url recuperato: {download_url}")
             return download_url
         except:
             return str(input("Errore nel recupero del link di download, inserirlo manualmente: "))
 
     def __scrape_download_url(self, url):
         # XPath to retrieve download URL
-        dom = self.getDom(url, loadJS=True)
+        dom = self.getDom(url, loadJS=False)
         query = "//*[contains(@href, 'Ep_')][contains(@id, 'alt')]"
         a = dom.xpath(query, first=True)
         link = a.attrs.get('href') if a else None
