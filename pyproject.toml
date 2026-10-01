@@ -1,0 +1,37 @@
+[project]
+name = "anime-downloader"
+version = "2.0.0"
+description = "Download whole seasons from AnimeWorld, several episodes at a time, with resumable downloads."
+readme = "README.md"
+authors = [{ name = "Federico Calabrò" }]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "rich>=15.0.0",
+    "selectolax>=0.4.13",
+    "typer>=0.27.2",
+]
+
+[project.scripts]
+anime-downloader = "anime_downloader.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.11,<0.12"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]
